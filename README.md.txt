@@ -1,0 +1,1 @@
+Programul a fost realizat in Clion cu compilator de visualstudio
