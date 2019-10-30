@@ -2,7 +2,7 @@
 // Created by HP on 10/30/2019.
 //
 
-#ifndef UNTITLED_POLINOM_H
+#ifndef UNTITLED_P  OLINOM_H
 #define UNTITLED_POLINOM_H
 #include <iostream>
 #include <cmath>

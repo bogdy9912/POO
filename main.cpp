@@ -1,9 +1,151 @@
-//
-// Created by HP on 10/30/2019.
-//
-
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
 #include "polinom.h"
-;
+using namespace std;
+/*
+class polinom
+{
+
+    double *coef;
+    int n;
+public:
+
+    void set_n(int val)    /// Seteaza N
+    {
+        n=val;
+    }
+
+
+    void set_coef()                 ///Set coef  ADICA CITESTE COEFICIENTII UNUI POL
+    {
+        int i;
+        for (i=1; i<=n; i++)
+            cin>>coef[i];
+    }
+    void set_coef_to_0()
+    {
+        int i;
+    for (i=1;i<=n;i++)
+    coef[i]=0;
+    }
+
+
+    int get_n ()             /// GET N
+    {
+        return n;
+    }
+
+
+    double get_coef(int poz)        /// get coeficient specific
+    {
+        return *(coef+poz);
+    }
+    void retusare_polinom()
+    {
+
+        while (coef[n]==0)
+        {
+            n--;
+        }
+    }
+
+    polinom(int m)                  ///constructor de initializare
+    {
+        n=m;
+        coef = new double[n+1];
+
+        for (int i=1; i<=n; i++)
+            coef[i]=0;
+    }
+
+    polinom(const polinom&ob)       /// constructor de copiere
+    {
+        coef=new double[ob.n+1];
+        n=ob.n;
+        for (int i=1; i<=ob.n; i++)
+        {
+            coef[i]=ob.coef[i];
+        }
+
+
+    }
+    ~polinom()          /// destructor
+    {
+        delete []coef;
+        n=0;
+    }
+
+
+
+    polinom& operator = (const polinom& ob)     ///supraincarcare operator = pol
+    {
+        if (n==ob.n)
+        {
+            for (int i=1; i<=n; i++)
+                coef[i]=ob.coef[i];
+        }
+        else
+        {
+            delete[] coef;
+            coef=new double[ob.n +1];
+            for (int i=1; i<=ob.n; i++)
+            {
+                coef[i]=ob.coef[i];
+            }
+            n=ob.n;
+        }
+        return *this;
+    }
+
+/// functii friend sau scrise in afara clasei
+
+    polinom& operator=(const double &a);
+    double& operator[](int );
+    void afisare();
+    friend polinom& operator+(polinom&);
+    friend const polinom  operator+(polinom&,polinom&);
+    friend const polinom operator+(polinom&,double);
+    friend const polinom operator+(double,polinom&);
+    friend const polinom operator-(polinom&);
+    friend const polinom operator-(polinom&,polinom&);
+    friend const polinom operator-(polinom&,double);
+    friend const polinom operator-(double,polinom&);
+    friend const polinom operator*(polinom&,polinom&);
+    friend const polinom operator*(polinom&,double);
+    friend const polinom operator*(double,polinom&);
+    friend const polinom operator/(polinom&, polinom&);
+    friend const polinom operator/(polinom&, double);
+    friend const polinom operator/(double,polinom&);
+    friend const polinom operator%(polinom&, polinom&);
+    //  friend polinom& operator%(polinom,double);
+    friend const polinom operator^(polinom&,int);
+    friend void operator+=(polinom&,polinom&);
+    friend void operator+=(polinom&,double);
+    friend void operator+=(double&,polinom&);    /// ce inseamna asta?
+    friend void operator-=(polinom&,polinom&);
+    friend void operator-=(polinom&,double);
+    friend void operator-=(double&,polinom&); ///same
+    friend void operator*=(polinom&,polinom&);
+    friend void operator*=(polinom&,double);
+    friend void operator*=(double&,polinom&); /// same
+    friend void operator/=(polinom&,polinom&);
+    friend void operator/=(polinom&,double);
+    friend void operator/=(double&,polinom&);  /// same
+    friend int operator==(polinom&,polinom&);
+    friend int operator==(polinom&,double);
+    friend int operator==(double,polinom&);
+    friend int operator!=(polinom&,polinom&);
+    friend int operator!=(polinom&,double);
+    friend int operator!=(double,polinom&);
+    friend int operator !(polinom&);
+    double operator() (double);
+    friend int grad (polinom&);
+    friend const polinom euclid(polinom&,polinom&);
+    friend int operator <(polinom& ,polinom &);
+
+
+};
 polinom& polinom::operator=(const double &a)        ///supraincarcare operator = a
 {
 
@@ -240,7 +382,7 @@ const polinom operator % (polinom& ob1,polinom& ob2)
         k=k-1;
 
         polinom man2=ob2*aux;
-        ob1 = ob1 - man2; /// aici am facut o modif
+      ob1 = ob1 - man2; /// aici am facut o modif
 //        while (ob1[i-1] == 0)
 //            i--;
     }
@@ -427,4 +569,76 @@ void polinom::afisare()
         cout<<coef[i]<<" ";
     }
     cout<<endl;
+}*/
+int main()
+{
+    int citireGrad1;
+    int citireGrad;
+
+    cout<<"Introdu gradul primului polinom pe care vrei sa il introduci:  ";
+    cin>>citireGrad1;
+    citireGrad1+=1;
+    polinom a(citireGrad1);
+    cout<<"Introdu coeficientii primului polinom: (DE LA GRADUL CEL MAI MIC LA CEL MAI MARE) "<<endl;
+    a.set_coef();
+    a.retusare_polinom();
+    cout<<"Introdu gradul celui de-al doilea polinom pe care vrei sa il citesti: "<<endl;
+    cin>>citireGrad;
+    citireGrad+=1;
+    polinom b(citireGrad);
+    cout<<"Introdu coeficientii primului polinom: (DE LA GRADUL CEL MAI MIC LA CEL MAI MARE) "<<endl;
+    b.set_coef();
+    b.retusare_polinom();
+    cout<<endl;
+
+    polinom c(2);
+    cout<<"ob1+ob2";
+    c=a+b;
+    c.afisare();
+    cout<<"ob1-ob2";
+    c=a-b;
+    c.afisare();
+    cout<<"ob1*ob2";
+    c=a*b;
+    c.afisare();
+    cout<<"ob1/ob2";
+    c=a/b;
+    c.afisare();
+    cout<<"ob1^2";
+    c=a^2;
+    c.afisare();
+    cout<<"a+=b";
+    a+=b;
+    a.afisare();
+    cout<<"a-=b";
+    a-=b;
+    a.afisare();
+    cout<<"a*=b";
+    a*=b;
+    a.afisare();
+    cout<<"a/=b";
+    a/=b;
+    a.afisare();
+    cout<<"a/=2";
+    a/=2;
+    a.afisare();
+    cout<<"a*=2";
+    a*=2;
+    a.afisare();
+    cout<<"a==b (1 adevarat, 0 fals)"<<endl;
+    cout<<endl<<(a==b)<<endl;
+    cout<<"a!=b "<<endl;
+    cout<<(a!=b)<<endl;
+    cout<<"!a "<<endl;
+    cout<<(!a)<<endl;
+    cout<<"Grad a"<<endl;
+    cout<<grad(a)<<endl;
+    cout<<"Valoarea lui A in punctul 3"<<endl;
+    cout<<a(3)<<endl;
+    cout<<"Euclid ";
+    c=euclid(a,b);
+    c.afisare();
+    cout<<"Sfarsit"<<endl;
+
+    return 0;
 }
